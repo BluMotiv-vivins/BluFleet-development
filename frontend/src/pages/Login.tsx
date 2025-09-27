@@ -20,6 +20,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, isAuthenticated }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Login form submitted:', { email, password: password.length > 0 ? '[REDACTED]' : '[EMPTY]' });
     onLogin(email, password);
   };
 
@@ -49,7 +50,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, isAuthenticated }) => {
                 id="email-address"
                 name="email"
                 type="email"
-                autoComplete="email"
+                autoComplete="off"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -65,7 +66,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, isAuthenticated }) => {
                 id="password"
                 name="password"
                 type="password"
-                autoComplete="current-password"
+                autoComplete="off"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

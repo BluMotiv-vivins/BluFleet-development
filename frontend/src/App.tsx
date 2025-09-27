@@ -105,13 +105,18 @@ function App() {
 
   const handleLogin = async (email: string, password: string) => {
     try {
+      console.log('App.tsx handleLogin called with:', { email, passwordLength: password?.length });
+      
+      const loginData = { email, password };
+      console.log('Sending login request:', JSON.stringify(loginData, null, 2));
+      
       // Use correct API endpoint
       const response = await fetch('http://localhost:3000/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify(loginData),
       });
 
       if (!response.ok) {

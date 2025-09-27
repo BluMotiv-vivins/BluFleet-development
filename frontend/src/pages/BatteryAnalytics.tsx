@@ -847,9 +847,9 @@ const BatteryAnalytics: React.FC = () => {
             {/* Model Tabs */}
             <div className="flex space-x-1 bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
               {[
-                { key: 'rul', label: 'RUL Model', icon: '⏰', color: 'green' },
-                { key: 'soc', label: 'SOC Model', icon: '🔋', color: 'yellow' },
-                { key: 'soh', label: 'SOH Model', icon: '❤️', color: 'purple' }
+                { key: 'rul', label: 'RUL Model', icon: '', color: 'green' },
+                { key: 'soc', label: 'SOC Model', icon: '', color: 'yellow' },
+                { key: 'soh', label: 'SOH Model', icon: '', color: 'purple' }
               ].map((tab) => (
                 <button
                   key={tab.key}

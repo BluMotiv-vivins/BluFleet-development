@@ -18,6 +18,7 @@ class AuthController extends BaseController {
     this.validateRequest(req);
 
     const { email, password } = req.body;
+    console.log('Login attempt:', { email, passwordLength: password?.length });
 
     // Query user from database
     const userQuery = `
@@ -28,15 +29,21 @@ class AuthController extends BaseController {
     
     const userResult = await database.query(userQuery, [email]);
     const user = userResult.rows[0];
+    console.log('User found:', !!user);
     
     if (!user) {
+      console.log('User not found for email:', email);
       loggers.logAuth('login_failed', undefined, email, false, 'User not found');
       throw new UnauthorizedError('Invalid email or password');
     }
 
     // Verify password
+    console.log('Comparing password with hash...');
     const isValidPassword = await bcrypt.compare(password, user.password_hash);
+    console.log('Password valid:', isValidPassword);
+    
     if (!isValidPassword) {
+      console.log('Password comparison failed');
       loggers.logAuth('login_failed', user.id, email, false, 'Invalid password');
       throw new UnauthorizedError('Invalid email or password');
     }

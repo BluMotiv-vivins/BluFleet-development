@@ -88,6 +88,8 @@ app.use((req: any, res, next) => {
 
 // API Routes
 app.use('/api/auth', authRoutes);
+// Temporary redirect for old /api/users/login to new /api/auth/login
+app.use('/api/users', authRoutes);
 app.use('/api/health', healthRoutes);
 app.use('/api/vehicles', authenticate, vehicleRoutes);
 app.use('/api/drivers', authenticate, driverRoutes);

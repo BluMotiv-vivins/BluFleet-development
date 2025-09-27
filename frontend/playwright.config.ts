@@ -44,7 +44,7 @@ export default defineConfig({
   webServer: [
     {
       command: 'cd test-backend && node server.js',
-      url: 'http://localhost:3001/health',
+      url: 'http://localhost:3000/health',
       reuseExistingServer: true,
       timeout: 5000,
     },
