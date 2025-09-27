@@ -1,0 +1,2 @@
+record_id,timestamp,device_id,cycle,frequency,z_real,z_imag,rrul,rul_prediction,health_stage,kinesis_stream,sagemaker_endpoint,lambda_request_id,raw_data_location
+bd4f7a0b,2025-09-17T10:30:14.991304,test_vehicle_2d452aea,150,2.5,0.25,0.35,200.5,98.76,healthy,blufleet-live-stream,blufleet-optimized-endpoint,322ccd33-5395-469f-a310-d17c7b003c90,raw/year=2025/month=09/day=17/hour=10/20250917_103014_bd4f7a0b.json

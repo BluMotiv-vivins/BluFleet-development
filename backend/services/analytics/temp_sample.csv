@@ -1,0 +1,4 @@
+record_id,timestamp,device_id,cycle,frequency,z_real,z_imag,rrul,rul_prediction,health_stage,kinesis_stream,sagemaker_endpoint,lambda_request_id,raw_data_location
+8a7a0031,2025-09-15T11:52:23.892407,test_vehicle_04fcfb48,150,2.5,0.25,0.35,200.5,98.76,healthy,blufleet-live-stream,blufleet-optimized-endpoint,36e51d4d-a55b-4526-8dfc-f2b989fd47e5,raw/year=2025/month=09/day=15/hour=11/20250915_115223_8a7a0031.json
+52488014,2025-09-15T11:53:45.897749,test_vehicle_b10de8df,150,2.5,0.25,0.35,200.5,98.76,healthy,blufleet-live-stream,blufleet-optimized-endpoint,46e1311c-479c-4c02-9097-c2acbe08a0d3,raw/year=2025/month=09/day=15/hour=11/20250915_115345_52488014.json
+ac0cc2a5,2025-09-15T11:54:45.890225,test_vehicle_9d3a283c,150,2.5,0.25,0.35,200.5,98.76,healthy,blufleet-live-stream,blufleet-optimized-endpoint,e1a1fc6c-9d30-463f-9070-5407604ac8fe,raw/year=2025/month=09/day=15/hour=11/20250915_115445_ac0cc2a5.json

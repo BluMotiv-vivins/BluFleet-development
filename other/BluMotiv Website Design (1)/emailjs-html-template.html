@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application - BluMotiv</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background-color: #2563eb;
+            color: white;
+            padding: 20px;
+            margin: -30px -30px 30px -30px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8fafc;
+            border-left: 4px solid #2563eb;
+            border-radius: 4px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 10px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-row {
+            margin-bottom: 8px;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #374151;
+            display: inline-block;
+            width: 120px;
+        }
+
+        .value {
+            color: #6b7280;
+        }
+
+        .cover-letter {
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-style: italic;
+            white-space: pre-wrap;
+        }
+
+        .contact-info {
+            background-color: #ecfdf5;
+            border-left-color: #10b981;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .note {
+            background-color: #fef3c7;
+            border: 1px solid #f59e0b;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>New Job Application</h1>
+            <p>BluMotiv Careers Portal</p>
+        </div>
+
+        <p>Dear BluMotiv HR Team,</p>
+        <p>You have received a new job application through the BluMotiv careers website.</p>
+
+        <div class="section">
+            <div class="section-title">🎯 Job Details</div>
+            <div class="info-row">
+                <span class="label">Position:</span>
+                <span class="value">{{job_title}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Department:</span>
+                <span class="value">{{job_department}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Application Date:</span>
+                <span class="value">{{application_date}}</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">👤 Candidate Information</div>
+            <div class="info-row">
+                <span class="label">Name:</span>
+                <span class="value">{{candidate_name}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Email:</span>
+                <span class="value">{{candidate_email}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Mobile:</span>
+                <span class="value">{{candidate_mobile}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Experience:</span>
+                <span class="value">{{candidate_experience}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Education:</span>
+                <span class="value">{{candidate_education}}</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📝 Cover Letter</div>
+            <div class="cover-letter">{{cover_letter}}</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📄 Resume</div>
+            <div class="info-row">
+                <span class="label">Resume File:</span>
+                <span class="value">{{resume_name}}</span>
+            </div>
+            <div class="info-row" style="margin-top: 15px;"></div>
+            <span class="label">Download Link:</span>
+            <a href="{{resume_url}}" target="_blank"
+                style="color: #2563eb; text-decoration: underline; font-weight: bold;">
+                📥 Download Resume
+            </a>
+        </div>
+        <div
+            style="background-color: #ecfdf5; border: 1px solid #10b981; padding: 10px; border-radius: 4px; margin-top: 10px; font-size: 14px;">
+            <strong>✓ Resume Available:</strong> Click the download link above to access the candidate's resume file.
+            The file is securely stored and ready for download.
+        </div>
+    </div>
+
+    <div class="section contact-info">
+        <div class="section-title">📞 Contact Candidate</div>
+        <p>You can reach the candidate at:</p>
+        <div class="info-row">
+            <span class="label">📧 Email:</span>
+            <span class="value">{{candidate_email}}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">📱 Phone:</span>
+            <span class="value">{{candidate_mobile}}</span>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Best regards,</strong><br>
+            BluMotiv Careers System</p>
+        <p><em>This is an automated message from the BluMotiv careers portal.</em></p>
+    </div>
+    </div>
+</body>
+
+</html>

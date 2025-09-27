@@ -1,0 +1,189 @@
+# Docker Compose Override for Development Environment
+# This file extends the main docker-compose.yml for local development
+
+version: '3.8'
+
+services:
+  # Development-specific overrides
+  api-gateway:
+    volumes:
+      - ./services/api-gateway:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DEBUG=fleetvolt:*
+      - LOG_LEVEL=debug
+    ports:
+      - "3000:3000"
+      - "9229:9229" # Debug port
+
+  fleet-monitoring:
+    volumes:
+      - ./services/fleet-monitoring:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DEBUG=fleetvolt:*
+      - LOG_LEVEL=debug
+    ports:
+      - "3001:3001"
+      - "9230:9229" # Debug port
+
+  energy-charging:
+    volumes:
+      - ./services/energy-charging:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DEBUG=fleetvolt:*
+      - LOG_LEVEL=debug
+    ports:
+      - "3002:3002"
+      - "9231:9229" # Debug port
+
+  maintenance:
+    volumes:
+      - ./services/maintenance:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DEBUG=fleetvolt:*
+      - LOG_LEVEL=debug
+    ports:
+      - "3003:3003"
+      - "9232:9229" # Debug port
+
+  safety-compliance:
+    volumes:
+      - ./services/safety-compliance:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DEBUG=fleetvolt:*
+      - LOG_LEVEL=debug
+    ports:
+      - "3004:3004"
+      - "9233:9229" # Debug port
+
+  analytics:
+    volumes:
+      - ./services/analytics:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DEBUG=fleetvolt:*
+      - LOG_LEVEL=debug
+    ports:
+      - "3005:3005"
+      - "9234:9229" # Debug port
+
+  insurance-finance:
+    volumes:
+      - ./services/insurance-finance:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DEBUG=fleetvolt:*
+      - LOG_LEVEL=debug
+    ports:
+      - "3006:3006"
+      - "9235:9229" # Debug port
+
+  integration-iot:
+    volumes:
+      - ./services/integration-iot:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DEBUG=fleetvolt:*
+      - LOG_LEVEL=debug
+    ports:
+      - "3007:3007"
+      - "9236:9229" # Debug port
+
+  security-access:
+    volumes:
+      - ./services/security-access:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DEBUG=fleetvolt:*
+      - LOG_LEVEL=debug
+    ports:
+      - "3008:3008"
+      - "9237:9229" # Debug port
+
+  # Development tools
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@fleetvolt.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    environment:
+      REDIS_HOSTS: local:redis:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kafka
+
+  # Monitoring stack for development
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards
+    depends_on:
+      - prometheus
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - "16686:16686"
+      - "14268:14268"
+    environment:
+      COLLECTOR_OTLP_ENABLED: true
+
+volumes:
+  pgadmin_data:
+  prometheus_data:
+  grafana_data:

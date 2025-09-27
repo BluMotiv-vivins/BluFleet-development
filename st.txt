@@ -1,0 +1,3 @@
+cd /Users/vivinvarshans/Desktop/mockfleet/backend/services/analytics && node simple-server.js
+
+cd /Users/vivinvarshans/Desktop/mockfleet/frontend && npm run dev

@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* stylelint-disable at-rule-no-unknown */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
+
+@layer base {
+  /* Samsung-inspired smooth scrolling */
+  html {
+    @apply h-full scroll-smooth;
+    scroll-behavior: smooth;
+  }
+
+  /* Enhanced BluFleet Dark Theme Base Styles */
+  * {
+    @apply focus:outline-none;
+    /* Samsung-style sub-pixel antialiasing */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply font-sans text-blu-white bg-background-primary h-full;
+    /* Samsung-inspired typography improvements */
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    /* Enhanced dark theme background with Samsung-style depth */
+    background: 
+      radial-gradient(at 40% 20%, rgba(36, 127, 255, 0.15) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(14, 39, 148, 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(36, 127, 255, 0.05) 0px, transparent 50%),
+      linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    /* Samsung-style color transitions */
+    transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Ensure content doesn't shift during animations */
+    overflow-x: hidden;
+  }
+
+  /* Dark mode support */
+  html.dark {
+    color-scheme: dark;
+  }
+
+  html:not(.dark) {
+    color-scheme: light;
+  }
+
+  /* Light mode overrides */
+  html:not(.dark) body {
+    @apply text-gray-900 bg-white;
+    background: 
+      radial-gradient(at 40% 20%, rgba(36, 127, 255, 0.05) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(14, 39, 148, 0.03) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(36, 127, 255, 0.02) 0px, transparent 50%),
+      linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    body {
+      @apply bg-black text-white;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Focus styles for better accessibility with BluFleet colors */
+  :focus-visible {
+    @apply ring-2 ring-blu-blue ring-offset-2 ring-offset-background-primary rounded-md;
+  }
+
+  /* Skip link for screen readers */
+  .skip-link {
+    @apply absolute -top-10 left-6 bg-blu-blue text-blu-white px-4 py-2 rounded-md z-50 transition-all duration-200;
+  }
+
+  .skip-link:focus {
+    @apply top-6;
+  }
+
+  /* Scrollbar styling for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background-secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-secondary-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-secondary-500;
+  }
+}
+
+@layer components {
+  /* BluFleet Glassmorphism Card Components */
+  .card {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm;
+  }
+
+  .card-hover {
+    @apply hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300;
+  }
+
+  .card-glass {
+    @apply bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg;
+  }
+
+  /* BluFleet Button Styles */
+  .btn-primary {
+    @apply bg-blu-blue hover:bg-blu-blue/90 focus:bg-blu-blue text-blu-white px-6 py-3 rounded-full font-medium transition-all duration-300;
+    @apply focus:ring-2 focus:ring-blu-blue focus:ring-offset-2 focus:ring-offset-background-primary;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply shadow-btn hover:shadow-btn-hover hover:scale-[1.02] active:scale-[0.98];
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent border-2 border-blu-blue text-blu-blue hover:bg-blu-blue/10 px-6 py-3 rounded-full font-medium transition-all duration-300;
+    @apply focus:ring-2 focus:ring-blu-blue focus:ring-offset-2 focus:ring-offset-background-primary;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply hover:scale-[1.02] active:scale-[0.98];
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-text-secondary hover:text-blu-white hover:bg-white/5 px-4 py-2 rounded-lg font-medium transition-all duration-300;
+    @apply focus:ring-2 focus:ring-blu-blue focus:ring-offset-2 focus:ring-offset-background-primary;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Status indicators with BluFleet styling */
+  .status-active {
+    @apply bg-success-500/20 text-success-400 border border-success-500/30 backdrop-blur-sm;
+  }
+
+  .status-charging {
+    @apply bg-blu-blue/20 text-blu-blue border border-blu-blue/30 backdrop-blur-sm;
+  }
+
+  .status-maintenance {
+    @apply bg-warning-500/20 text-warning-400 border border-warning-500/30 backdrop-blur-sm;
+  }
+
+  .status-offline {
+    @apply bg-danger-500/20 text-danger-400 border border-danger-500/30 backdrop-blur-sm;
+  }
+
+  /* Loading states with dark theme */
+  .loading-skeleton {
+    @apply bg-secondary-700/50 animate-pulse rounded;
+  }
+
+  .loading-spinner {
+    @apply animate-spin rounded-full border-2 border-secondary-600 border-t-blu-blue;
+  }
+
+  /* BluFleet Navigation */
+  .nav-glass {
+    @apply bg-black/20 backdrop-blur-md border border-white/10 rounded-full;
+  }
+
+  .nav-item {
+    @apply text-text-secondary hover:text-blu-white transition-colors duration-300 px-4 py-2 rounded-lg;
+  }
+
+  .nav-item-active {
+    @apply text-blu-blue bg-blu-blue/10;
+  }
+
+  /* BluFleet Dashboard Styles */
+  .dashboard-section {
+    @apply mb-8 sm:mb-12;
+  }
+
+  .dashboard-grid {
+    @apply grid gap-6;
+  }
+
+  .dashboard-card {
+    @apply card p-6;
+  }
+
+  .dashboard-header {
+    @apply text-2xl font-semibold text-blu-white mb-2;
+  }
+
+  .dashboard-subtitle {
+    @apply text-text-secondary mb-6;
+  }
+
+  /* Interactive elements */
+  .interactive-hover {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-glass cursor-pointer;
+  }
+
+  /* Input styling for dark theme */
+  .input-glass {
+    @apply bg-black/20 backdrop-blur-md border border-white/10 rounded-lg px-4 py-3 text-blu-white placeholder-text-muted;
+    @apply focus:border-blu-blue focus:ring-2 focus:ring-blu-blue/20 transition-all duration-300;
+  }
+
+  /* Modal styling */
+  .modal-overlay {
+    @apply bg-black/50 backdrop-blur-sm;
+  }
+
+  .modal-content {
+    @apply card p-6 max-w-lg w-full mx-4;
+  }
+
+  /* Gradient backgrounds */
+  .gradient-primary {
+    background: linear-gradient(135deg, #247FFF 0%, #0E2794 100%);
+  }
+
+  .gradient-secondary {
+    background: linear-gradient(135deg, #304461 0%, #1F2937 100%);
+  }
+
+  /* Text gradients */
+  .text-gradient {
+    background: linear-gradient(135deg, #F0F8FE 0%, #247FFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Screen reader only content */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  /* Layout utilities */
+  .layout-container {
+    @apply min-h-screen bg-background-primary;
+  }
+
+  .content-wrapper {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
